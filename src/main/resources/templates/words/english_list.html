@@ -1,0 +1,23 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8"/>
+        <title>English words</title>
+    </head>
+    <body th:align="center">
+        <h1>Words</h1>
+        <div>
+            <table>
+                <tbody>
+                    <tr th:each="englishLetter : ${englishLetters}">
+                        <td th:if="englishLetter.index < 10"><a href="/words/${englishLetter}">${englishLetter}</a> </td>
+                        <td th:if="englishLetter.index > 10 && englishLetter.index < 20"><a href="/words/${englishLetter}">${englishLetter}</a> </td>
+                        <td th:if="englishLetter.index > 20 && englishLetter.index < 30"><a href="/words/${englishLetter}">${englishLetter}</a> </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </body>
+</html>
+
