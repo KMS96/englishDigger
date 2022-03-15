@@ -3,18 +3,31 @@
     <head>
         <meta charset="UTF-8"/>
         <title>English words</title>
+        <style>
+            a {
+                font-size: 18pt;
+            }
+        </style>
     </head>
     <body th:align="center">
         <h1>Words</h1>
         <div>
             <table>
-                <tbody>
-                    <tr th:each="englishLetter : ${englishLetters}">
-                        <td th:if="englishLetter.index < 10"><a href="/words/${englishLetter}">${englishLetter}</a> </td>
-                        <td th:if="englishLetter.index > 10 && englishLetter.index < 20"><a href="/words/${englishLetter}">${englishLetter}</a> </td>
-                        <td th:if="englishLetter.index > 20 && englishLetter.index < 30"><a href="/words/${englishLetter}">${englishLetter}</a> </td>
-                    </tr>
-                </tbody>
+                <tr>
+                    <td th:each="englishLetter : ${englishLetters}" th:if="${englishLetterStat.index lt 9}">
+                        <a th:href="@{/words/{letter}(letter=${englishLetter})}" th:text="${englishLetter}"></a>
+                    </td>
+                </tr>
+                <tr >
+                    <td th:each="englishLetter : ${englishLetters}" th:if="${englishLetterStat.index gt 8 and englishLetterStat.index lt 17}">
+                        <a th:href="@{/words/{letter}(letter=${englishLetter})}" th:text="${englishLetter}"></a>
+                    </td>
+                </tr>
+                <tr >
+                    <td th:each="englishLetter : ${englishLetters}" th:if="${englishLetterStat.index gt 16 and englishLetterStat.index lt 30}">
+                        <a th:href="@{/words/{letter}(letter=${englishLetter})}" th:text="${englishLetter}"></a>
+                    </td>
+                </tr>
             </table>
         </div>
 
