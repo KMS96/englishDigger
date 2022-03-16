@@ -10,22 +10,21 @@
         </style>
     </head>
     <body th:align="center">
-        <h1>Words</h1>
         <div>
             <table>
                 <tr>
                     <td th:each="englishLetter : ${englishLetters}" th:if="${englishLetterStat.index lt 9}">
-                        <a th:href="@{/words/{letter}(letter=${englishLetter})}" th:text="${englishLetter}"></a>
+                        <a th:href="@{/words/{letter}(letter=${englishLetter})}"><img th:src="@{/img/letters/letter_{letter}.jpg(letter=${englishLetter})}"></a>
                     </td>
                 </tr>
                 <tr >
-                    <td th:each="englishLetter : ${englishLetters}" th:if="${englishLetterStat.index gt 8 and englishLetterStat.index lt 17}">
-                        <a th:href="@{/words/{letter}(letter=${englishLetter})}" th:text="${englishLetter}"></a>
+                    <td th:each="englishLetter : ${englishLetters}" th:if="${englishLetterStat.index gt 8 and englishLetterStat.index lt 18}">
+                        <a th:href="@{/words/{letter}(letter=${englishLetter})}"><img th:src="@{/img/letters/letter_{letter}.jpg(letter=${englishLetter})}"></a>
                     </td>
                 </tr>
                 <tr >
-                    <td th:each="englishLetter : ${englishLetters}" th:if="${englishLetterStat.index gt 16 and englishLetterStat.index lt 30}">
-                        <a th:href="@{/words/{letter}(letter=${englishLetter})}" th:text="${englishLetter}"></a>
+                    <td th:each="englishLetter : ${englishLetters}" th:if="${englishLetterStat.index gt 17 and englishLetterStat.index lt 30}">
+                        <a th:href="@{/words/{letter}(letter=${englishLetter})}"><img th:src="@{/img/letters/letter_{letter}.jpg(letter=${englishLetter})}"></a>
                     </td>
                 </tr>
             </table>

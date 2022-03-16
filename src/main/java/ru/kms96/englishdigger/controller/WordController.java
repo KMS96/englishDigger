@@ -31,7 +31,7 @@ public class WordController {
             resultView.setStatus(HttpStatus.NOT_FOUND);
             return resultView;
         }
-        resultView.setViewName("/words/list_" + startLetter.toLowerCase());
+        resultView.setViewName("/words/list");
         resultView.addObject("englishWords", englishWordsStartsWith);
         resultView.setStatus(HttpStatus.OK);
 
