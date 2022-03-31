@@ -17,14 +17,17 @@
                         <a th:href="@{/words/{letter}(letter=${englishLetter})}"><img th:src="@{/img/letters/letter_{letter}.jpg(letter=${englishLetter})}"></a>
                     </td>
                 </tr>
-                <tr >
+                <tr>
                     <td th:each="englishLetter : ${englishLetters}" th:if="${englishLetterStat.index gt 8 and englishLetterStat.index lt 18}">
                         <a th:href="@{/words/{letter}(letter=${englishLetter})}"><img th:src="@{/img/letters/letter_{letter}.jpg(letter=${englishLetter})}"></a>
                     </td>
                 </tr>
-                <tr >
+                <tr>
                     <td th:each="englishLetter : ${englishLetters}" th:if="${englishLetterStat.index gt 17 and englishLetterStat.index lt 30}">
                         <a th:href="@{/words/{letter}(letter=${englishLetter})}"><img th:src="@{/img/letters/letter_{letter}.jpg(letter=${englishLetter})}"></a>
+                    </td>
+                    <td>
+                        <a th:href="@{/words/add}"><img th:src="@{/img/letters/add_new_word.jpg}"></a>
                     </td>
                 </tr>
             </table>

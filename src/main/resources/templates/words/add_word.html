@@ -1,0 +1,24 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Add new word</title>
+</head>
+    <body th:align="center">
+
+        <form action="#" th:action="@{/words/added}" th:object="${word}" method="post">
+            <div>
+                <p>Новое слово:<br>
+                    <input type="text" th:field="*{englishTranslate}">
+                </p>
+            </div>
+            <div>
+                <p>Перевод:<br>
+                    <input type="text" th:field="*{russianTranslate}">
+                </p>
+            </div>
+            <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
+        </form>
+
+    </body>
+</html>

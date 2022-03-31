@@ -38,16 +38,22 @@ public class WordController {
         return resultView;
     }
 
-    @RequestMapping(value = "/add/{newWord}", method = RequestMethod.GET)
-    public ModelAndView addNewWord(@PathVariable("newWord") String newWord) {
-        Word addedWord = wordService.addNewWord(newWord);
+    @GetMapping("/add")
+    public ModelAndView addWordForm(ModelAndView model) {
+        model.setViewName("words/add_word");
+        model.addObject("word", new Word());
+        model.setStatus(HttpStatus.OK);
+
+        return model;
+    }
+
+    @PostMapping("/added")
+    public ModelAndView addWordSubmit(@ModelAttribute Word word) {
+        wordService.addNewWord(word);
+
         ModelAndView resultView = new ModelAndView();
-        if (null == addedWord) {
-            resultView.setStatus(HttpStatus.NOT_FOUND);
-            return resultView;
-        }
-        resultView.setViewName("/words/full_list");
-        resultView.addObject("englishWords", wordService.getAllWords());
+        resultView.setViewName("words/add_word");
+        resultView.addObject("word", new Word());
         resultView.setStatus(HttpStatus.OK);
 
         return resultView;
