@@ -26,16 +26,17 @@ public class WordController {
     @GetMapping(value = "/{startLetter}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ModelAndView getAllWordsByFirstLetter(@PathVariable("startLetter") String startLetter) {
         List<Word> englishWordsStartsWith = wordService.getAllWordsByFirstLetter(startLetter);
-        ModelAndView resultView = new ModelAndView();
+        ModelAndView returnedResultView = new ModelAndView();
         if (null == englishWordsStartsWith) {
-            resultView.setStatus(HttpStatus.NOT_FOUND);
-            return resultView;
+            returnedResultView.setStatus(HttpStatus.NOT_FOUND);
+            return returnedResultView;
         }
-        resultView.setViewName("/words/list");
-        resultView.addObject("englishWords", englishWordsStartsWith);
-        resultView.setStatus(HttpStatus.OK);
 
-        return resultView;
+        returnedResultView.setViewName("/words/english_list");
+        returnedResultView.addObject("englishLetters", DictionaryUtills.generateEnglishAlphabet());
+        returnedResultView.addObject("englishWords", englishWordsStartsWith);
+        returnedResultView.setStatus(HttpStatus.OK);
+        return returnedResultView;
     }
 
     @GetMapping("/add")

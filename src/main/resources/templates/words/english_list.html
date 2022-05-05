@@ -3,6 +3,7 @@
     <head>
         <meta charset="UTF-8"/>
         <title>English words</title>
+        <link th:href="@{/css/wordsStyles.css}" rel="stylesheet" />
         <style>
             a {
                 font-size: 18pt;
@@ -10,27 +11,92 @@
         </style>
     </head>
     <body th:align="center">
-        <div>
-            <table>
-                <tr>
-                    <td th:each="englishLetter : ${englishLetters}" th:if="${englishLetterStat.index lt 9}">
-                        <a th:href="@{/words/{letter}(letter=${englishLetter})}"><img th:src="@{/img/letters/letter_{letter}.jpg(letter=${englishLetter})}"></a>
-                    </td>
-                </tr>
-                <tr>
-                    <td th:each="englishLetter : ${englishLetters}" th:if="${englishLetterStat.index gt 8 and englishLetterStat.index lt 18}">
-                        <a th:href="@{/words/{letter}(letter=${englishLetter})}"><img th:src="@{/img/letters/letter_{letter}.jpg(letter=${englishLetter})}"></a>
-                    </td>
-                </tr>
-                <tr>
-                    <td th:each="englishLetter : ${englishLetters}" th:if="${englishLetterStat.index gt 17 and englishLetterStat.index lt 30}">
-                        <a th:href="@{/words/{letter}(letter=${englishLetter})}"><img th:src="@{/img/letters/letter_{letter}.jpg(letter=${englishLetter})}"></a>
-                    </td>
-                    <td>
-                        <a th:href="@{/words/add}"><img th:src="@{/img/letters/add_new_word.jpg}"></a>
-                    </td>
-                </tr>
-            </table>
+        <div class="commonDiv">
+            <div style="float: left">
+                <table>
+                    <tr>
+                        <td th:each="englishLetter : ${englishLetters}" th:if="${englishLetterStat.index lt 3}">
+                            <a th:href="@{/words/{letter}(letter=${englishLetter})}"><img th:src="@{/img/letters/letter_{letter}.jpg(letter=${englishLetter})}"></a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td th:each="englishLetter : ${englishLetters}" th:if="${englishLetterStat.index gt 2 and englishLetterStat.index lt 6}">
+                            <a th:href="@{/words/{letter}(letter=${englishLetter})}"><img th:src="@{/img/letters/letter_{letter}.jpg(letter=${englishLetter})}"></a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td th:each="englishLetter : ${englishLetters}" th:if="${englishLetterStat.index gt 5 and englishLetterStat.index lt 9}">
+                            <a th:href="@{/words/{letter}(letter=${englishLetter})}"><img th:src="@{/img/letters/letter_{letter}.jpg(letter=${englishLetter})}"></a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td th:each="englishLetter : ${englishLetters}" th:if="${englishLetterStat.index gt 8 and englishLetterStat.index lt 12}">
+                            <a th:href="@{/words/{letter}(letter=${englishLetter})}"><img th:src="@{/img/letters/letter_{letter}.jpg(letter=${englishLetter})}"></a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td th:each="englishLetter : ${englishLetters}" th:if="${englishLetterStat.index gt 11 and englishLetterStat.index lt 15}">
+                            <a th:href="@{/words/{letter}(letter=${englishLetter})}"><img th:src="@{/img/letters/letter_{letter}.jpg(letter=${englishLetter})}"></a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td th:each="englishLetter : ${englishLetters}" th:if="${englishLetterStat.index gt 14 and englishLetterStat.index lt 18}">
+                            <a th:href="@{/words/{letter}(letter=${englishLetter})}"><img th:src="@{/img/letters/letter_{letter}.jpg(letter=${englishLetter})}"></a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td th:each="englishLetter : ${englishLetters}" th:if="${englishLetterStat.index gt 17 and englishLetterStat.index lt 21}">
+                            <a th:href="@{/words/{letter}(letter=${englishLetter})}"><img th:src="@{/img/letters/letter_{letter}.jpg(letter=${englishLetter})}"></a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td th:each="englishLetter : ${englishLetters}" th:if="${englishLetterStat.index gt 20 and englishLetterStat.index lt 24}">
+                            <a th:href="@{/words/{letter}(letter=${englishLetter})}"><img th:src="@{/img/letters/letter_{letter}.jpg(letter=${englishLetter})}"></a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td th:each="englishLetter : ${englishLetters}" th:if="${englishLetterStat.index gt 23 and englishLetterStat.index lt 26}">
+                            <a th:href="@{/words/{letter}(letter=${englishLetter})}"><img th:src="@{/img/letters/letter_{letter}.jpg(letter=${englishLetter})}"></a>
+                        </td>
+                        <td>
+                            <a th:href="@{/words/add}"><img th:src="@{/img/letters/add_new_word.jpg}"></a>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div id="wordsListDiv" style="height: 100%">
+                <ul th:each="englishWord : ${englishWords}">
+                    <li id="wordTranslate" th:text="${englishWord.englishTranslate}"></li>
+                    <!--<li id="wordTranslate" th:text="${englishWord.englishTranslate}" th:onclick="'javascript:translate(\''+ ${englishWord.russianTranslate} + '\');'"></li>-->
+                    <!--<li id="wordTranslate" th:text="${englishWord.englishTranslate}" th:onclick="'javascript:translate(\''+${englishWord.russianTranslate}+'\',\''+${englishWord.englishTranslate}+'\');'"></li>-->
+                    <script th:inline="javascript">
+                        var wordSelects = document.getElementsByTagName('li');
+
+                        function showTranslate(e) {
+                            let translate = [[${englishWord.russianTranslate}]];
+                            if (translate != null) {
+                                console.log(e);
+                                e.innerHTML = translate;
+                            }
+                        }
+
+                        // function translate(ruWord, enWord) {
+                        //     // let el = document.getElementById("wordTranslate");
+                        //     let els = document.getElementsByTagName('li');
+                        //     for (let i = 0; i < els.length; i++) {
+                        //         if (els[i].innerHTML === enWord) {
+                        //             els[i].innerHTML = ruWord;
+                        //         }
+                        //     }
+                        // }
+
+                        for (let i = 0; i < wordSelects.length; i++) {
+                            wordSelects[i].addEventListener('click', showTranslate);
+                        }
+                    </script>
+                </ul>
+            </div>
+            <!--<script src="/js/showTranslate.js"></script>-->
         </div>
 
     </body>

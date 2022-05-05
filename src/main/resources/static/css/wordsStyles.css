@@ -1,0 +1,12 @@
+.song-selection {
+    background-color: gray !important;
+    color: red !important
+}
+.commonDiv {
+    width: 100%;
+    display: inline-block;
+    overflow: hidden;
+}
+li {
+    list-style-type: none; /* Убираем маркеры */
+}
