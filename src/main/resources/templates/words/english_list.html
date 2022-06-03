@@ -97,6 +97,15 @@
                 </ul>
             </div>
             <!--<script src="/js/showTranslate.js"></script>-->
+
+            <form class="searchForm" action="#" th:action="@{/words/find}" th:object="${word}" method="get">
+                <div>
+                    <p>Найти слова:<br>
+                        <input type="text" th:field="*{englishTranslate}">
+                    </p>
+                </div>
+                <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
+            </form>
         </div>
 
     </body>

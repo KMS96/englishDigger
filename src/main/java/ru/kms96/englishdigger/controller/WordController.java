@@ -69,4 +69,18 @@ public class WordController {
 
         return resultView;
     }
+
+    @GetMapping("/find")
+    public ModelAndView searchWords(@ModelAttribute Word searchSubstring) {
+        List<Word> foundedWordsBySubstring = wordService.findWordsBySubstring(searchSubstring.getEnglishTranslate());
+
+        ModelAndView resultView = new ModelAndView();
+        resultView.setViewName("words/english_list");
+        resultView.addObject("word", searchSubstring);
+        resultView.addObject("englishLetters", DictionaryUtills.generateEnglishAlphabet());;
+        resultView.addObject("englishWords", foundedWordsBySubstring);
+        resultView.setStatus(HttpStatus.OK);
+
+        return resultView;
+    }
 }

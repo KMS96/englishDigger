@@ -9,6 +9,7 @@ import ru.kms96.englishdigger.repository.WordRepository;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class WordService {
@@ -43,5 +44,12 @@ public class WordService {
         Iterable<Word> words = wordRepository.findAll();
         words.forEach(allWords::add);
         return allWords;
+    }
+
+    public List<Word> findWordsBySubstring(String searchSubstring) {
+
+        return getAllWords().stream()
+                .filter(word -> word.getEnglishTranslate().contains(searchSubstring))
+                .collect(Collectors.toList());
     }
 }
